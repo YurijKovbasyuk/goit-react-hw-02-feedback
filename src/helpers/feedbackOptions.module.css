@@ -8,3 +8,7 @@
   cursor: pointer;
   scale: 1.3px;
 }
+
+.button button:hover {
+  transform: scale(1.2);
+}
