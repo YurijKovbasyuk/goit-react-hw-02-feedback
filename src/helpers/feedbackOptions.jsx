@@ -42,11 +42,11 @@ const FeedbackOptions = ({
 };
 
 FeedbackOptions.propTypes = {
-  onHandleGood: PropTypes.func,
-  onHandleNeutral: PropTypes.func,
-  onHandleBad: PropTypes.func,
+  onHandleGood: PropTypes.func.isRequired,
+  onHandleNeutral: PropTypes.func.isRequired,
+  onHandleBad: PropTypes.func.isRequired,
 
-  total: PropTypes.func,
+  total: PropTypes.func.isRequired,
 };
 
 export default FeedbackOptions;
