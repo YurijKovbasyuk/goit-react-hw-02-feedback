@@ -17,11 +17,12 @@ const Statistics = ({ good, neutral, bad, total }) => {
           Bad:<span>{bad}</span>
         </li>
         <li>
-          Total:<span>{total}</span>
+          Total:
+          <span>{total()}</span>
         </li>
         <li>
           Positive feedback:
-          <span>{Math.round((good * 100) / total)}%</span>
+          <span>{Math.round((good * 100) / total())}%</span>
         </li>
       </ul>
     </div>
@@ -32,6 +33,6 @@ Statistics.propTypes = {
   neutral: PropTypes.number.isRequired,
   bad: PropTypes.number.isRequired,
 
-  total: PropTypes.number.isRequired,
+  total: PropTypes.func.isRequired,
 };
 export default Statistics;

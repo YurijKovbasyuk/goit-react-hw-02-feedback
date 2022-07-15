@@ -1,51 +1,44 @@
 import React, { Component } from 'react';
 import css from 'components/section/section.module.css';
-import FeedbackOptions from 'helpers/feedbackOptions';
+import FeedbackOptions from 'components/FeedbackOptions/feedbackOptions';
 import Statistics from 'components/statistcs/statistcs';
 import Notification from 'components/notification/notification';
 
 class Section extends Component {
-  handleGood = () => {
-    this.setState(prevState => ({ good: prevState.good + 1 }));
-  };
-  handleNeutral = () => {
-    this.setState(prevState => {
-      return { neutral: prevState.neutral + 1 };
-    });
-  };
-  handleBad = () => {
-    this.setState(prevState => ({ bad: prevState.bad + 1 }));
-  };
-  total = () => {
-    this.setState(prevState => ({
-      total: prevState.good + prevState.neutral + prevState.bad,
-    }));
-  };
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
-    total: 0,
   };
+
+  handleBtnClick = type => {
+    this.setState(prevState => {
+      return { [Object.values(type)]: prevState[Object.values(type)] + 1 };
+    });
+  };
+
+  totalCount = () => {
+    const totals = Object.values(this.state);
+    return totals.reduce((acc, el) => acc + el, 0);
+  };
+
   render() {
     return (
       <div>
         <p className={css}>Please leave feedback</p>
         <FeedbackOptions
-          onHandleGood={this.handleGood}
-          onHandleNeutral={this.handleNeutral}
-          onHandleBad={this.handleBad}
-          total={this.total}
-        ></FeedbackOptions>
-        {this.state.total === 0 ? (
-          <Notification message={'There is no feedback'}></Notification>
+          onBtnClick={this.handleBtnClick}
+          options={Object.keys(this.state)}
+        />
+        {this.totalCount() === 0 ? (
+          <Notification message={'There is no feedback'} />
         ) : (
           <Statistics
             good={this.state.good}
             neutral={this.state.neutral}
             bad={this.state.bad}
-            total={this.state.total}
-          ></Statistics>
+            total={this.totalCount}
+          />
         )}
       </div>
     );
