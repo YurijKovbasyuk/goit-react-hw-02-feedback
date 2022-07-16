@@ -1,7 +1,7 @@
 import css from './feedbackOptions.module.css';
 import PropTypes from 'prop-types';
 
-const FeedbackOptions = ({ options = [], onBtnClick }) => {
+const FeedbackOptions = ({ options, onBtnClick }) => {
   return (
     <div className={css.button}>
       {options.map(option => (
@@ -10,7 +10,7 @@ const FeedbackOptions = ({ options = [], onBtnClick }) => {
           key={option}
           type="button"
           onClick={() => {
-            onBtnClick({ option });
+            onBtnClick(option);
           }}
         >
           {option}

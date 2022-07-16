@@ -1,11 +1,11 @@
 import React from 'react';
-import css from './statistcs.module.css';
+import css from './statistics.module.css';
 import PropTypes from 'prop-types';
 
 const Statistics = ({ good, neutral, bad, total }) => {
   return (
     <div>
-      <p className={css.statistic}>Statistcs</p>
+      <p className={css.statistic}>Statistics</p>
       <ul className={css.counter}>
         <li>
           Good:<span>{good}</span>
